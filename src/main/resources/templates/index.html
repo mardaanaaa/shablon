@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/base.html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment="content">
+    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" th:src="@{'https://fashionista.com/.image/t_share/MTQxNjc4MTYzNTAyNTczNTEz/sostenibility-editorial-7stjpg.jpg'}" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left align-self-center">
+                                <h1 class="h1 text-success">Элегантность в каждой детали</h1>
+                                <h3 class="h2">Роскошный выбор для особенных моментов</h3>
+                                <p>
+                                    Ощутите роскошь и утонченность с нашей новой коллекцией одежды. Идеально подходит для особых случаев, наши элегантные и стильные наряды подчеркнут вашу индивидуальность и изысканность.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" th:src="@{'https://elis.ru/upload/iblock/dde/73hxjxlupvc69zuukidy1c4tlyvg1zs9/5afb4ec0_0646_11ec_9dcd_0050568e2ffe_a75cbb0f_483f_4ced_a52c_f55bc507547d.jpeg'}" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                <h1 class="h1">Легкость и Свобода</h1>
+                                <h3 class="h2">Почувствуйте свежесть и беззаботность</h3>
+                                <p>Погрузитесь в мир наших легких и воздушных коллекций одежды, которые принесут вам ощущение свободы и беззаботности. Наши стильные и комфортные модели созданы для того, чтобы вы наслаждались каждым моментом, чувствуя себя свободно и уверенно.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" th:src="@{'https://elis.ru/upload/iblock/9d6/qsllpsnp6iv1mbtiai4lza51gpn8kuq9/zhaket-belyy-letniy-art.JC0023-_-tsvet-Belyy-.jpeg'}" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                <h1 class="h1">Энергия дня</h1>
+                                <h3 class="h2">Ваша доза бодрости и позитива</h3>
+                                <p>Начните день с наших коллекций, полных энергии и оптимизма. Наши яркие и стильные модели придадут вам бодрости и уверенности, идеально подходя для активного дня. Комфортная и модная одежда, которая поднимет настроение и зарядит позитивом. Одевайтесь с удовольствием и чувствуйте себя на высоте!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+            <i class="fas fa-chevron-right"></i>
+        </a>
+    </div>
+
+
+    <section class="container py-5">
+        <div class="row text-center pt-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Популярные бренды</h1>
+                <p>Лучшие дизайнерские одежды </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 p-5 mt-3" th:each="brand : ${brands}">
+                <a href="#"><img th:src="${brand.loadImage()}" class="rounded-circle img-fluid border"></a>
+                <h5 class="text-center mt-3 mb-3" th:text="${brand.getName()}"></h5>
+                <p class="text-center"><a class="btn btn-success" th:href="@{'/products/brand/' + ${brand.id}}">В магазин</a></p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="bg-light">
+        <div class="container py-5">
+            <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1">Популярные продукты</h1>
+                    <p>
+                        Идеальное сочетание традиций и современности, подчеркивающее вашу индивидуальность.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4 mb-4" th:each="product : ${products}">
+                    <div class="card h-100">
+                        <a th:href="@{'/products/' + ${product.id}}">
+                            <img th:src="${product.loadImage()}" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex mb-1 d-flex justify-content-between">
+                                <div class="d-flex">
+                                    <li th:each="i : ${#numbers.sequence(1, 5)}">
+                                        <i th:classappend="${i <= product.getBrand().getRating()} ? 'text-warning fa fa-star' : 'text-muted fa fa-star'"></i>
+                                    </li>
+                                </div>
+                                <div>
+                                    <li class="text-muted text-right" th:text="${'$' + product.getPrice()}"></li>
+                                </div>
+                            </ul>
+                            <a href="shop-single.html" class="h2 text-decoration-none text-dark" th:text="${product.getName()}"></a>
+                            <p class="card-text" th:text="${product.getDescription()}">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

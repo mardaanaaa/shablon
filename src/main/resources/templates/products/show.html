@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/base.html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment="content">
+
+    <!-- Open Content -->
+    <section class="bg-light">
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-lg-5 mt-5">
+                    <div class="card mb-3">
+                        <img class="card-img img-fluid" th:src="${product.loadImage()}" alt="Card image cap" id="product-detail">
+                    </div>
+                    <div class="row">
+                    </div>
+                </div>
+                <!-- col end -->
+                <div class="col-lg-7 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="h2" th:text="${product.getName()}"></h1>
+                            <p class="h3 py-2" th:text="${'$' + product.getPrice()}"></p>
+                            <p class="py-2">
+                            <ul class="list-unstyled d-flex mb-1">
+                                <li th:each="i : ${#numbers.sequence(1, 5)}">
+                                    <i th:classappend="${i <= product.getBrand().getRating()} ? 'text-warning fa fa-star' : 'text-muted fa fa-star'"></i>
+                                </li>
+                            </ul>
+                            </p>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h6>Бренды:</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted"><strong th:text="${product.getBrand().getName()}"></strong></p>
+                                </li>
+                            </ul>
+
+                            <h6>Описание:</h6>
+                            <p th:text="${product.getDescription()}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-left p-2 pb-3">
+                <h4>Связанные продукты</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-4" th:each="related : ${relatedProducts}">
+                    <div class="card mb-4 product-wap rounded-0">
+                        <div class="card rounded-0">
+                            <img class="card-img rounded-0 img-fluid" th:src="${related.loadImage()}">
+                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+                                    <li><a class="btn btn-success text-white mt-2" th:href="@{'/products/' + ${related.id}}"><i class="far fa-eye"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <a th:href="@{'/products/' + ${related.id}}" class="h3 text-decoration-none" th:text="${related.getName()}"></a>
+                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                                <li th:text="${related.getBrand().getName()}"></li>
+                            </ul>
+                            <ul class="list-unstyled d-flex justify-content-center mb-1">
+                                <li th:each="i : ${#numbers.sequence(1, 5)}">
+                                    <i th:classappend="${i <= related.getBrand().getRating()} ? 'text-warning fa fa-star' : 'text-muted fa fa-star'"></i>
+                                </li>
+                            </ul>
+                            <p class="text-center mb-0" th:text="${'$' + related.getPrice()}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    <!-- End Article -->
+
+</div>
+

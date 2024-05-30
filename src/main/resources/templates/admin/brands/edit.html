@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/admin.html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment="content">
+    <form th:action="@{'/admin/brands/update'}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" th:value="${brand.getId()}">
+        <div class="mb-3">
+            <label for="name" class="form-label">Название</label>
+            <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp" th:value="${brand.getName()}">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Страна</label>
+            <input type="text" class="form-control" id="price" name="country" th:value="${brand.getCountry()}">
+        </div>
+        <div class="mb-3">
+            <label for="file" class="form-label">Фото</label>
+            <input type="file" class="form-control" id="file" name="image">
+        </div>
+        <div class="mb-3">
+            <label for="rating" class="form-label">Рейтинг</label>
+            <input type="number" class="form-control" id="rating" name="rating" th:value="${brand.getRating()}">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Описание</label>
+            <textarea class="form-control" id="description" name="description" rows="3" th:text="${brand.getDescription()}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Обновить</button>
+    </form>
+</div>

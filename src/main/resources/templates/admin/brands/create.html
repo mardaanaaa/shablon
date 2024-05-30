@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/admin.html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment="content">
+    <h1>Добавить урок</h1>
+    <form th:action="@{'/admin/brands/store'}" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="name" class="form-label">Название</label>
+            <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Уровень</label>
+            <input type="text" class="form-control" id="price" name="country">
+        </div>
+        <div class="mb-3">
+            <label for="file" class="form-label">Файл</label>
+            <input type="file" class="form-control" id="file" name="image">
+        </div>
+        <div class="mb-3">
+            <label for="rating" class="form-label">Урок</label>
+            <input type="number" class="form-control" id="rating" name="rating">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Описание</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Добавить</button>
+    </form>
+</div>
